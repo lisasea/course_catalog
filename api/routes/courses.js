@@ -26,7 +26,7 @@ router.get("/", asyncHandler( async (req, res) => { //SEND GET request to Return
             }
         ]
     });
-    res.json({ courses });
+    res.json( courses );
 }));
 
 router.get("/:id", asyncHandler( async (req, res) => { //SEND GET request to Return a list of courses (including the user that owns each course) for the provided course ID

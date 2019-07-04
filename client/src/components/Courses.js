@@ -25,7 +25,7 @@ componentDidMount() { // get list of courses from REST API
       const courses = this.state.courses;
       console.log("here", courses);
       let courseModules;
-      if (courses)  {
+      if (courses.length > 0)  {
         courseModules = courses.map((course, index) => (
           <div className="grid-33" key={index}>
             <Link className="course--module course--link" to={"/courses/" + course.id}>

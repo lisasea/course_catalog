@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import axios from "axios";
-
+import "./css/global.css";
 // import components
 import CourseDetail from './components/CourseDetail';
 import Courses from './components/Courses';

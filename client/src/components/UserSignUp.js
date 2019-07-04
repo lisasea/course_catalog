@@ -22,7 +22,8 @@ class UserSignUp extends Component {
   
     handleSubmit = e => {
       e.preventDefault();
-      this.props.signIn(this.state)
+      let emailPsswd = {"emailAddress": this.state.emailAddress, "password": this.state.password}
+      this.props.signIn(emailPsswd)
     };
 
     render(){

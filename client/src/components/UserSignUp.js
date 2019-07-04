@@ -1,5 +1,6 @@
-import React, {Component} from 'react';
-import { Link } from 'react-router-dom'; 
+import React, {Component} from "react";
+import { Link } from "react-router-dom"; 
+import axios from "axios";
 
 class UserSignUp extends Component {
     constructor(props) {
@@ -16,15 +17,28 @@ class UserSignUp extends Component {
   }
   
     handleInputChange = e => {
-        e.preventDefault();
+      e.preventDefault();
       this.setState({ [e.target.name]: e.target.value });
     }
   
     handleSubmit = e => {
       e.preventDefault();
-      let emailPsswd = {"emailAddress": this.state.emailAddress, "password": this.state.password}
-      this.props.signIn(emailPsswd)
-    };
+      const {email, password, confirmPassword} = this.state;
+
+      if(password === "") { // check for valid password then make http request
+        this.setState({validationErrors: "Password required"})
+      } else if (password !== confirmPassword) {
+        this.setState({validationErrors: "Wrong Password, please re-enter"})
+      } else {
+        axios.post('http://localhost:5000/api/users', { firstName, lastName, emailAddress, password })
+        .then(res => {
+          if(res.status === 201) { // http request success!
+          console.log("You, ${firstName} ${lastName}, are signed up!");
+          this.setState({validationErrors: ""})
+          this.props.signIn(null, emailAddress, password);
+          }
+        })
+      };
 
     render(){
         return(

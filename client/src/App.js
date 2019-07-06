@@ -16,7 +16,9 @@ import UserSignUp from './components/UserSignUp';
 class App extends Component { //set global state includes user log in
   constructor() {
     super();
-  this.state = {};
+  this.state = {
+    isLoggedIn: localStorage.getItem("IsLoggedIn"),
+  };
   this.signIn = this.signIn.bind(this);
   }
 
@@ -33,6 +35,7 @@ class App extends Component { //set global state includes user log in
       localStorage.setItem('Password',userInfo.password)
       localStorage.setItem('UserId', JSON.stringify(res.data.id))
       localStorage.setItem('IsLoggedIn', JSON.stringify(true))
+      this.setState({ isLoggedIn: true });
       window.location.assign('/')
     }).catch(error => {
       console.log(error.response.data);
@@ -41,13 +44,14 @@ class App extends Component { //set global state includes user log in
 
   signOut = () => {
     localStorage.clear();
+    this.setState({ isLoggedIn: false });
   };
 
   render() {
     return (
       <BrowserRouter>
       <div>
-        <Header  />
+        <Header isLoggedIn={this.state.isLoggedIn} />
         <Switch>
           <Route exact path="/" component={Courses} />
           <PrivateRoute exact path="/courses/create"  component={CreateCourse} /> 
@@ -55,7 +59,7 @@ class App extends Component { //set global state includes user log in
           <Route exact path="/courses/:id" component={CourseDetail} />
           <Route exact path="/signin" render={() => <UserSignIn  signIn={this.signIn}/>} /> 
           <Route exact path="/signup" render={() => <UserSignUp signIn={this.signIn} />} />
-          <Route exact path="/signout" component={UserSignOut} />
+          <Route exact path="/signout" render={() => <UserSignOut signOut={this.signOut} />} />
         </Switch>
       </div>
     </BrowserRouter>

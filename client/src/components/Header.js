@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Header = props => {
-  return localStorage.getItem("UserId") ? (
+  return props.isLoggedIn ? (
     <div className="header">
       <div className="bounds">
         <h1 className="header--logo">Courses</h1>

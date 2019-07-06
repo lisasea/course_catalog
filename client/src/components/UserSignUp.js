@@ -1,6 +1,9 @@
+
+
 import React, {Component} from "react";
 import { Link } from "react-router-dom"; 
 import axios from "axios";
+//import Header from "./Header";
 
 class UserSignUp extends Component {
     constructor(props) {
@@ -15,32 +18,74 @@ class UserSignUp extends Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+    userSetup = () => {
+      localStorage.setItem('authenticated', 'true');
+      localStorage.setItem('firstName', this.firstName.value);
+      localStorage.setItem('lastName', this.lastName.value);
+      localStorage.setItem('email', this.emailAddress.value);
+      localStorage.setItem('password', this.password.value);
+      this.props.history.push('/');  
+    }
+
+    createUser = e => {
+      e.preventDefault();
+      if(this.state.password === "") { // check for valid password then make http request
+        this.setState({validationErrors: "Password required"})
+      } else if (this.state.password !== this.state.confirmPassword) {
+        this.setState({validationErrors: "Wrong Password, please re-enter"})
+      } else {
+        axios.post('http://localhost:5000/api/users', { 
+          firstName: this.firstName.value, 
+          lastName: this.lastName.value,
+          emailAddress: this.emailAddress.value, 
+          password: this.password.value
+        })
+        .then(res => {
+          if(res.status === 201) { // http request success!
+          console.log("You, ${firstName} ${lastName}, are signed up!");
+          this.setState({validationErrors: ""})
+          this.props.signIn(null, this.state.emailAddress, this.state.password);
+          }
+        })
+      };
+    }
   
     handleInputChange = e => {
       e.preventDefault();
       this.setState({ [e.target.name]: e.target.value });
-    }
+    };
+
+    handleCancel = e => {
+      e.preventDefault();
+      this.props.history.push("/courses");   
+    };
   
     handleSubmit = e => {
       e.preventDefault();
-      const {email, password, confirmPassword} = this.state;
+      const {firstName, lastName, emailAddress, password, confirmPassword} = this.state;
 
       if(password === "") { // check for valid password then make http request
         this.setState({validationErrors: "Password required"})
       } else if (password !== confirmPassword) {
         this.setState({validationErrors: "Wrong Password, please re-enter"})
       } else {
-        axios.post('http://localhost:5000/api/users', { firstName, lastName, emailAddress, password })
+        axios.post('http://localhost:5000/api/users', { 
+          firstName, 
+          lastName,
+          emailAddress, 
+          password,
+        })
         .then(res => {
           if(res.status === 201) { // http request success!
           console.log("You, ${firstName} ${lastName}, are signed up!");
           this.setState({validationErrors: ""})
-          this.props.signIn(null, emailAddress, password);
+          this.props.signIn({ emailAddress, password });
           }
         })
       };
+    }
 
-    render(){
+    render() {
         return(
           <div>
             <hr />
@@ -66,7 +111,10 @@ class UserSignUp extends Component {
     }
 } 
 
-export default UserSignUp
+
+
+export default UserSignUp;
+
 // This component provides the "Sign Up" screen 
 // rendering a form that allows a user to sign up by creating a new account
 //  also renders a "Sign Up" button

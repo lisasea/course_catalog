@@ -20,7 +20,7 @@ class App extends Component { //set global state includes user log in
   this.signIn = this.signIn.bind(this);
   }
 
-  signIn(userInfo) { //taken from internet 
+  signIn(userInfo) { //taken from internet
     axios.get("http://localhost:5000/api/users", {
       auth: {
         username: userInfo.emailAddress,
@@ -34,6 +34,8 @@ class App extends Component { //set global state includes user log in
       window.localStorage.setItem('UserId', JSON.stringify(res.data._id))
       window.localStorage.setItem('IsLoggedIn', JSON.stringify(true))
       window.location.assign('/')
+    }).catch(error => {
+      console.log(error.response.data);
     })
   }
 
@@ -51,8 +53,8 @@ class App extends Component { //set global state includes user log in
           <PrivateRoute exact path="/courses/create"  component={CreateCourse} /> 
           <PrivateRoute exact path="/courses/:id/update" component={UpdateCourse} /> 
           <Route exact path="/courses/:id" component={CourseDetail} />
-          <Route exact path="/signin" component={() => <UserSignIn  signIn={this.signIn}/>} /> 
-          <Route exact path="/signup" component={UserSignUp} />
+          <Route exact path="/signin" render={() => <UserSignIn  signIn={this.signIn}/>} /> 
+          <Route exact path="/signup" render={() => <UserSignUp signIn={this.signIn} />} />
           <Route exact path="/signout" component={UserSignOut} />
         </Switch>
       </div>

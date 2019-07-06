@@ -22,23 +22,25 @@ class CreateCourse extends Component {
 
     handleSubmit = e => {
       e.preventDefault();
-      axios.post("http://localhost:5000/api/courses/", { // `http://localhost:5000/api/courses/`${params.id} ??
-        auth: {
-            username: window.localStorage.getItem("emailAddress"), //"Email?"
-            password: window.localStorage.getItem("password")
+      console.log(this.state, localStorage.getItem("Email"), localStorage.getItem("Password"));
+      axios.post("http://localhost:5000/api/courses/", {
+          title: this.state.title,
+          description: this.state.description,
+          estimatedTime: this.state.estimatedTime,
+          materialsNeeded: this.state.materialsNeeded
         },
-        data: {
-            title: this.state.title,
-            description: this.state.description,
-            estimatedTime: this.state.estimatedTime,
-            materialsNeeded: this.state.materialsNeeded
+        { // `http://localhost:5000/api/courses/`${params.id} ??
+        auth: {
+            username: localStorage.getItem("Email"),
+            password: localStorage.getItem("Password")
         }
       })
         .then(alert("New course created!")) 
         .then(() => {
             this.props.history.push("/");
         })
-        .catch(() => {
+        .catch((error) => {
+          console.log(error.response.data);
            this.props.history.push("/error");
         });  
     };

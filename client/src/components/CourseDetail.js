@@ -52,12 +52,13 @@ class CourseDetail extends Component { // setup empty courses array and empty us
         e.preventDefault();
         axios.delete(`http://localhost:5000/api/courses/${params.id}`, {
             auth: {
-                username: window.localStorage.getItem("emailAddress"), //"Email?"
-                password: window.localStorage.getItem("password")
+                username: localStorage.getItem("Email"), //"Email?"
+                password: localStorage.getItem("Password")
             },
+
             data: {
-                id: this.state.courseId
-            }
+              id: this.state.courseId
+            },
         })
         .then(() => {
           history.push("/");

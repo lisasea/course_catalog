@@ -7,7 +7,7 @@ function PrivateRoute({ component: Component, ...rest }) { // from https: /react
     <Route
       {...rest}
       render={props =>
-        localStorage.getItem('username') 
+        localStorage.getItem("Email") 
         ? ( <Component {...props} />) 
         : (alert("Please Log In to access."),
             <Redirect to={{

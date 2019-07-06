@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import axios from "axios";
 import "./css/global.css";
 // import components
@@ -53,7 +53,8 @@ class App extends Component { //set global state includes user log in
       <div>
         <Header isLoggedIn={this.state.isLoggedIn} />
         <Switch>
-          <Route exact path="/" component={Courses} />
+          <Redirect exact from="/" to="/courses" />
+          <Route exact path="/courses" component={Courses} />
           <PrivateRoute exact path="/courses/create"  component={CreateCourse} /> 
           <PrivateRoute exact path="/courses/:id/update" component={UpdateCourse} /> 
           <Route exact path="/courses/:id" component={CourseDetail} />

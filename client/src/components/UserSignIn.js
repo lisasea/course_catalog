@@ -12,13 +12,12 @@ class UserSignIn extends Component {
   }   
    
   handleSubmit = event => {
-    console.log(this.state)
     event.preventDefault();
     let userInfo = {"password": this.state.password, "emailAddress": this.state.emailAddress} 
     this.props.signIn(userInfo)
   };
 
-    change = e => {
+    handleChange = e => {
       this.setState({
         [e.target.name]: e.target.value
       })

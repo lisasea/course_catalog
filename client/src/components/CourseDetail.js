@@ -7,6 +7,7 @@ class CourseDetail extends Component { // setup empty courses array and empty us
     constructor(props){
       super(props)
       this.state = {
+        isLoading: true,
         courses: [], //course: ??
         user: []    //users: ??
       };
@@ -20,13 +21,17 @@ class CourseDetail extends Component { // setup empty courses array and empty us
          
         axios.get(`http://localhost:5000/api/courses/${params.id}`)
         .then (res => {
+
+          const courseData = res.data.coursesById;
+
           this.setState({
-            userId: parseInt(res.data.course.userId),
-            title: res.data.course.title,
-            author: res.data.course.User.firstName,
-            description: res.data.course.description,
-            estimatedTime: res.data.course.estimatedTime,
-            materialsNeeded: res.data.course.materialsNeeded 
+            isLoading: false,
+            userId: parseInt(courseData.userId),
+            title: courseData.title,
+            author: courseData.User.firstName,
+            description: courseData.description,
+            estimatedTime: courseData.estimatedTime,
+            materialsNeeded: courseData.materialsNeeded 
           });
         })
         .catch (err => {
@@ -63,6 +68,10 @@ class CourseDetail extends Component { // setup empty courses array and empty us
 
 
     render() {
+        if (this.state.isLoading) {
+          return <h1>Loading....</h1>;
+        }
+
         return(
             <div>
               <div className="actions--bar">
@@ -85,14 +94,14 @@ class CourseDetail extends Component { // setup empty courses array and empty us
                       <div className="grid-66">
                         <div className="course--header">
                           <h4 className="course--label">Course</h4>
-                          <h3 className="course--title">{this.state.course.title}</h3>
+                          <h3 className="course--title">{this.state.title}</h3>
                           <p>By {this.state.author}</p>
                         </div>
                       </div>
                     </div>
 
                       <div className="course--description">
-                          <ReactMarkdown source={this.state.course.description} />
+                          <ReactMarkdown source={this.state.description} />
                       </div>
 
                       <div className="grid-25 grid-right">
@@ -100,12 +109,12 @@ class CourseDetail extends Component { // setup empty courses array and empty us
                           <ul className="course--stats--list">
                                 <li className="course--stats--list--item">
                                   <h4>Estimated Time</h4>
-                                  <h3>{this.state.course.estimatedTime}</h3>
+                                  <h3>{this.state.estimatedTime}</h3>
                                 </li>
                                 <li className="course--stats--list--item">
                                   <h4>Materials Needed</h4>
                                   <ul>
-                                    <ReactMarkdown source={this.state.course.materialsNeeded}/>
+                                    <ReactMarkdown source={this.state.materialsNeeded}/>
                                   </ul>
                                 </li>
                           </ul>

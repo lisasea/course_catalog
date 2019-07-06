@@ -26,13 +26,13 @@ class App extends Component { //set global state includes user log in
         username: userInfo.emailAddress,
         password: userInfo.password
       }
-    }).then(res => { console.log(res.data)
-      window.localStorage.setItem('FirstName',res.data.firstName)
-      window.localStorage.setItem('LastName', res.data.lastName)
-      window.localStorage.setItem('Email',userInfo.emailAddress)
-      window.localStorage.setItem('Password',userInfo.password)
-      window.localStorage.setItem('UserId', JSON.stringify(res.data._id))
-      window.localStorage.setItem('IsLoggedIn', JSON.stringify(true))
+    }).then(res => {
+      localStorage.setItem('FirstName',res.data.firstName)
+      localStorage.setItem('LastName', res.data.lastName)
+      localStorage.setItem('Email',userInfo.emailAddress)
+      localStorage.setItem('Password',userInfo.password)
+      localStorage.setItem('UserId', JSON.stringify(res.data.id))
+      localStorage.setItem('IsLoggedIn', JSON.stringify(true))
       window.location.assign('/')
     }).catch(error => {
       console.log(error.response.data);

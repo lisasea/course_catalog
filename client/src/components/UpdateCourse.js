@@ -25,16 +25,16 @@ class UpdateCourse extends Component {
     handleSubmit = e => {
         e.preventDefault();
         const {match: {params}} = this.props;
-        axios.put(`http://localhost:5000/api/courses/${params.id}`, { // `http://localhost:5000/api/courses/${params.id}` ??
+        axios.put(`http://localhost:5000/api/courses/${params.id}`, 
+        {
+          title: this.state.title,
+          description: this.state.description,
+          estimatedTime: this.state.estimatedTime,
+          materialsNeeded: this.state.materialsNeeded,
+        }, { // `http://localhost:5000/api/courses/${params.id}` ??
           auth: {
-              username: window.localStorage.getItem("emailAddress"), //"Email"? "username"?
-              password: window.localStorage.getItem("password")
-          },
-          data: {
-              title: this.state.title,
-              description: this.state.description,
-              estimatedTime: this.state.estimatedTime,
-              materialsNeeded: this.state.materialsNeeded
+              username: localStorage.getItem("Email"), //"Email"? "username"?
+              password: localStorage.getItem("Password")
           }
         })
           .then(alert("Course has been updated!")) 
@@ -42,7 +42,7 @@ class UpdateCourse extends Component {
               this.props.history.push("/");
           })
           .catch((err) => {
-             console.log(err);
+             console.log(err.response.data);
              this.props.history.push("/error");
           });  
       };
@@ -95,7 +95,7 @@ class UpdateCourse extends Component {
                 </div>
                 <div className="grid-100 pad-bottom">
                     <button className="button" type="submit">Update Course</button>
-                    <button className="button button-secondary" onclick={this.handleCancel}>Cancel</button>
+                    <button className="button button-secondary" onClick={this.handleCancel}>Cancel</button>
                 </div>
               </form>
             </div>

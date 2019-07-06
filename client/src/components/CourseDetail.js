@@ -31,7 +31,8 @@ class CourseDetail extends Component { // setup empty courses array and empty us
             author: courseData.User.firstName,
             description: courseData.description,
             estimatedTime: courseData.estimatedTime,
-            materialsNeeded: courseData.materialsNeeded 
+            materialsNeeded: courseData.materialsNeeded,
+            id: courseData.id, 
           });
         })
         .catch (err => {
@@ -77,11 +78,11 @@ class CourseDetail extends Component { // setup empty courses array and empty us
               <div className="actions--bar">
                 <div className="bounds">
                    <div className="grid-100">
-                      {parseInt (this.state.useId) ===
-                      parseInt(localStorage.getItem("id")) ? (
+                      {parseInt (this.state.userId) ===
+                      parseInt(localStorage.getItem("UserId")) ? (
                         <span> {/*Update Course Button  // followed by Delete Course Button*/}
-                          <Link className="button" to={"/courses/"+this.state.course.id+"/update"}>Update Course</Link>
-                          <button className="button" onClick={e => this.handleDelete(e, localStorage.getItem("username"), localStorage.getItem("password"))}>Delete Course</button>
+                          <Link className="button" to={"/courses/"+this.state.id+"/update"}>Update Course</Link>
+                          <button className="button" onClick={e => this.handleDelete(e, localStorage.getItem("Email"), localStorage.getItem("Password"))}>Delete Course</button>
                         </span>
                       ) : (
                         ""

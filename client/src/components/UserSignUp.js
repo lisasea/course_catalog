@@ -42,7 +42,7 @@ class UserSignUp extends Component {
         })
         .then(res => {
           if(res.status === 201) { // http request success!
-          console.log("You, ${firstName} ${lastName}, are signed up!");
+          console.log("You are signed up!");
           this.setState({validationErrors: ""})
           this.props.signIn(null, this.state.emailAddress, this.state.password);
           }
@@ -62,9 +62,11 @@ class UserSignUp extends Component {
   
     handleSubmit = e => {
       e.preventDefault();
-      const {firstName, lastName, emailAddress, password, confirmPassword} = this.state;
+      const {firstName, lastName, emailAddress, password, confirmPassword } = this.state;
 
-      if(password === "") { // check for valid password then make http request
+      if(emailAddress === "") { // check for valid password then make http request
+        this.setState({validationErrors: "Email required"})
+      } else if(password === "") { // check for valid password then make http request
         this.setState({validationErrors: "Password required"})
       } else if (password !== confirmPassword) {
         this.setState({validationErrors: "Wrong Password, please re-enter"})
@@ -77,7 +79,7 @@ class UserSignUp extends Component {
         })
         .then(res => {
           if(res.status === 201) { // http request success!
-          console.log("You, ${firstName} ${lastName}, are signed up!");
+          console.log("You are signed up!");
           this.setState({validationErrors: ""})
           this.props.signIn({ emailAddress, password });
           }
@@ -86,6 +88,7 @@ class UserSignUp extends Component {
     }
 
     render() {
+      const { validationErrors } = this.state;
         return(
           <div>
             <hr />
@@ -93,6 +96,16 @@ class UserSignUp extends Component {
               <div className="grid-33 centered signin">
                 <h1>Sign Up</h1>
                 <div>
+                  {validationErrors ? (
+                    <div>
+                      <h2 className="validation--errors--label">Ooops!</h2>
+                      <div className="validation-errors">
+                        <ul>
+                          <li>{validationErrors}</li>
+                        </ul>
+                      </div>
+                    </div>
+                  ):""}
                   <form onSubmit={this.handleSubmit}>
                     <div><input id="firstName" name="firstName" type="text" className="" placeholder="First Name" value={this.state.firstName} onChange={e => this.handleInputChange(e)}/></div>
                     <div><input id="lastName" name="lastName" type="text" className="" placeholder="Last Name" value={this.state.lastName} onChange={e => this.handleInputChange(e)}/></div>

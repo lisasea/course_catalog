@@ -22,6 +22,16 @@ class CreateCourse extends Component {
 
     handleSubmit = e => {
       e.preventDefault();
+      const{title, description} = this.state;
+      if (title === "") {
+        this.setState({
+          validationErrors: "Please enter your Course Title"
+      }) 
+      } else if (description === "") {
+        this.setState({
+          validationErrors: "Please enter your Course Description"
+        })
+      } else {
       console.log(this.state, localStorage.getItem("Email"), localStorage.getItem("Password"));
       axios.post("http://localhost:5000/api/courses/", {
           title: this.state.title,
@@ -43,7 +53,7 @@ class CreateCourse extends Component {
           console.log(error.response.data);
            this.props.history.push("/error");
         });  
-    };
+    }};
 
     render() {
         const { /*title, description, estimatedTime, materialsNeeded,*/ validationErrors } = this.state;
@@ -53,7 +63,7 @@ class CreateCourse extends Component {
                   <div>
                     {validationErrors?(
                         <div>
-                            <h2 className="validation--errors--label">Validation errors</h2>
+                            <h2 className="validation--errors--label">Ooops!</h2>
                             <div className="validation-errors">
                                 <ul>
                                     <li>{validationErrors}</li>

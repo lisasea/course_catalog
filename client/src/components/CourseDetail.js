@@ -98,13 +98,12 @@ class CourseDetail extends Component { // setup empty courses array and empty us
                           <h4 className="course--label">Course</h4>
                           <h3 className="course--title">{this.state.title}</h3>
                           <p>By {this.state.author}</p>
+                          <div className="course--description">
+                          <ReactMarkdown source={this.state.description} />
+                          </div>
                         </div>
                       </div>
                     </div>
-
-                      <div className="course--description">
-                          <ReactMarkdown source={this.state.description} />
-                      </div>
 
                       <div className="grid-25 grid-right">
                         <div className="course--stats">

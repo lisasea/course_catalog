@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import axios from "axios";
 import "./css/global.css";
+
 // import components
 import CourseDetail from './components/CourseDetail';
 import Courses from './components/Courses';
@@ -22,7 +23,7 @@ class App extends Component { //set global state includes user log in
   this.signIn = this.signIn.bind(this);
   }
 
-  signIn(userInfo) { //taken from internet
+  signIn(userInfo) { //gets authenticated user data 
     axios.get("http://localhost:5000/api/users", {
       auth: {
         username: userInfo.emailAddress,
@@ -69,27 +70,3 @@ class App extends Component { //set global state includes user log in
 }
 
 export default App;
-
-/*/ below code adapted from https://alligator.io/react/axios-react/
-export default class CoursesList extends React.Component {
-  state = {
-    isLoading: true,
-    courses: []
-  }
-
-  componentDidMount() {
-    axios.get(`http://localhost:5000/api/courses`)
-      .then(res => {
-        const courses = res.data;
-        this.setState({ courses });
-      })
-  }
-
-  render() {
-    return (
-      <ul>
-        { this.state.courses.map(course => <li>{course.title}</li>)}
-      </ul>
-    ) }
-}
-*/

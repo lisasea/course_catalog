@@ -3,7 +3,6 @@
 import React, {Component} from "react";
 import { Link } from "react-router-dom"; 
 import axios from "axios";
-//import Header from "./Header";
 
 class UserSignUp extends Component {
     constructor(props) {
@@ -87,7 +86,7 @@ class UserSignUp extends Component {
       };
     }
 
-    render() {
+    render() { //renders a Sign Up form, Sign Up button and cancel button
       const { validationErrors } = this.state;
         return(
           <div>

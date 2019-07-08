@@ -43,7 +43,7 @@ class App extends Component { //set global state includes user log in
     })
   }
 
-  signOut = () => { /signs out, clears 
+  signOut = () => { //signs out, clears 
     localStorage.clear();
     this.setState({ isLoggedIn: false });
   };

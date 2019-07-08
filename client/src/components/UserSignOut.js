@@ -3,7 +3,7 @@ import React from "react";
 
 const UserSignOut = props => {
   props.signOut();
-  return (<Redirect to='/courses' />);
+  return (<Redirect to="/courses" />);
 }
 
 export default UserSignOut;

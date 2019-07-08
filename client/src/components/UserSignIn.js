@@ -1,12 +1,12 @@
-import React, {Component} from 'react';
-import { Link } from 'react-router-dom'; 
+import React, {Component} from "react";
+import { Link } from "react-router-dom"; 
 
 class UserSignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      emailAddress: '',
-      password: '' 
+      emailAddress: "",
+      password: "" 
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }   

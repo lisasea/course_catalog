@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import axios from 'axios'; 
+import axios from "axios"; 
 
 class UpdateCourse extends Component {
     constructor(props) {
@@ -41,9 +41,9 @@ class UpdateCourse extends Component {
           description: this.state.description,
           estimatedTime: this.state.estimatedTime,
           materialsNeeded: this.state.materialsNeeded,
-        }, { // `http://localhost:5000/api/courses/${params.id}` ??
+        }, { 
           auth: {
-              username: localStorage.getItem("Email"), //"Email"? "username"?
+              username: localStorage.getItem("Email"), 
               password: localStorage.getItem("Password")
           }
         })
@@ -63,7 +63,7 @@ class UpdateCourse extends Component {
       };
 
       render() {
-          const { user, validationErrors } = this.state; //isn't "course" used in lines 75, 79, 87, 91??
+          const { user, validationErrors } = this.state; 
           return(
             <div className="bounds course--detail">
                 <h1>Update Course</h1>

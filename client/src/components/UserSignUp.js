@@ -18,38 +18,14 @@ class UserSignUp extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
     userSetup = () => {
-      localStorage.setItem('authenticated', 'true');
-      localStorage.setItem('firstName', this.firstName.value);
-      localStorage.setItem('lastName', this.lastName.value);
-      localStorage.setItem('email', this.emailAddress.value);
-      localStorage.setItem('password', this.password.value);
-      this.props.history.push('/');  
+      localStorage.setItem("authenticated", "true");
+      localStorage.setItem("firstName", this.state.firstName);
+      localStorage.setItem("lastName", this.state.lastName);
+      localStorage.setItem("email", this.state.emailAddress);
+      localStorage.setItem("password", this.state.password);
+      this.props.history.push("/");  
     }
 
-    createUser = e => {
-      e.preventDefault();
-      if (this.firstName.value !== "" && this.lastName.value !== "" && this.emailAddress.value !== "" && this.password.value !== "" && this.confirmPassword.value !== "") 
-      if(this.state.password === "") { // check for valid password then make http request
-        this.setState({validationErrors: "Password required"})
-      } else if (this.state.password !== this.state.confirmPassword) {
-        this.setState({validationErrors: "Wrong Password, please re-enter"})
-      } else {
-        axios.post('http://localhost:5000/api/users', { 
-          firstName: this.firstName.value, 
-          lastName: this.lastName.value,
-          emailAddress: this.emailAddress.value, 
-          password: this.password.value
-        })
-        .then(res => {
-          if(res.status === 201) { // http request success!
-          console.log("You are signed up!");
-          this.setState({validationErrors: ""})
-          this.props.signIn(null, this.state.emailAddress, this.state.password);
-          }
-        })
-      };
-    }
-  
     handleInputChange = e => {
       e.preventDefault();
       this.setState({ [e.target.name]: e.target.value });
@@ -63,15 +39,18 @@ class UserSignUp extends Component {
     handleSubmit = e => {
       e.preventDefault();
       const {firstName, lastName, emailAddress, password, confirmPassword } = this.state;
-
-      if(emailAddress === "") { // check for valid password then make http request
+      if (firstName === "") {
+        this.setState({ validationErrors: "First name required"});
+      } else if (lastName === "") {
+        this.setState({ validationErrors: "Last name required"});
+      } else if(emailAddress === "") { // check for valid password then make http request
         this.setState({validationErrors: "Email required"})
       } else if(password === "") { // check for valid password then make http request
         this.setState({validationErrors: "Password required"})
       } else if (password !== confirmPassword) {
-        this.setState({validationErrors: "Wrong Password, please re-enter"})
+        this.setState({validationErrors: "Confirm Password field does not match password value, please re-enter"})
       } else {
-        axios.post('http://localhost:5000/api/users', { 
+        axios.post("http://localhost:5000/api/users", { 
           firstName, 
           lastName,
           emailAddress, 
@@ -131,7 +110,7 @@ export default UserSignUp;
 // This component provides the "Sign Up" screen 
 // rendering a form that allows a user to sign up by creating a new account
 //  also renders a "Sign Up" button
-//  when clicked sends a POST request to the REST API's /api/users route 
+//  when clicked sends a POST request to the REST API"s /api/users route 
 //   signs in the user. 
 //  This component also renders a "Cancel" button t
 //  returns the user to the default route (i.e. the list of courses).

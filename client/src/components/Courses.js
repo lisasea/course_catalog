@@ -11,7 +11,7 @@ class Courses extends Component { // setup empty courses array
     };
   }
 
-componentDidMount() { // get list of courses from REST API 
+componentDidMount() { // get list of courses from REST API /api/courses route
   axios.get("http://localhost:5000/api/courses")
   .then (res => {
     this.setState({
@@ -21,7 +21,7 @@ componentDidMount() { // get list of courses from REST API
   })
 }
 
-  render() { //maps over courses and creates link to course's "Course Detail" screen and link to "Create Course" screen
+  render() { //maps over courses, renders a list of courses and creates link to "Course Detail" screen and link to "Create Course" screen
       const courses = this.state.courses;
       console.log("here", courses);
       let courseModules;

@@ -23,7 +23,7 @@ class UserSignIn extends Component {
       })
     }
 
-    render() {
+    render() { //renders sign-in form, sign-in button and cancel button
         return ( 
             <div>
                 <hr/>

@@ -23,7 +23,7 @@ class App extends Component { //set global state includes user log in
   this.signIn = this.signIn.bind(this);
   }
 
-  signIn(userInfo) { //gets authenticated user data 
+  signIn(userInfo) { //gets authenticated user + data & handles sign-in
     axios.get("http://localhost:5000/api/users", {
       auth: {
         username: userInfo.emailAddress,
@@ -43,12 +43,12 @@ class App extends Component { //set global state includes user log in
     })
   }
 
-  signOut = () => {
+  signOut = () => { /signs out, clears 
     localStorage.clear();
     this.setState({ isLoggedIn: false });
   };
 
-  render() {
+  render() { //render routes with PrivateRoute on Create and UpdateCourse routes
     return (
       <BrowserRouter>
       <div>

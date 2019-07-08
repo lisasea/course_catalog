@@ -8,13 +8,13 @@ class CourseDetail extends Component { // setup empty courses array and empty us
       super(props)
       this.state = {
         isLoading: true,
-        courses: [], //course: ??
-        user: []    //users: ??
+        courses: [], 
+        user: []    
       };
       this.handleDelete = this.handleDelete.bind(this);
     }
 
-    componentDidMount() { //retrieves detail for a course from the REST API's /api/courses/:id route 
+    componentDidMount() { //provides Course Detail screen - retrieves detail for a course from the REST API's /api/courses/:id route 
         const {
             match: { params }
         } = this.props;
@@ -43,7 +43,7 @@ class CourseDetail extends Component { // setup empty courses array and empty us
         });
     }
 
-    handleDelete = (e) => {
+    handleDelete = (e) => { //deletes course 
         const {
             match: { params },
             history
@@ -52,7 +52,7 @@ class CourseDetail extends Component { // setup empty courses array and empty us
         e.preventDefault();
         axios.delete(`http://localhost:5000/api/courses/${params.id}`, {
             auth: {
-                username: localStorage.getItem("Email"), //"Email?"
+                username: localStorage.getItem("Email"), 
                 password: localStorage.getItem("Password")
             },
 

@@ -1,5 +1,5 @@
 import { Redirect } from "react-router-dom";
-import React, {Component} from "react";
+import React from "react";
 
 const UserSignOut = props => {
   props.signOut();

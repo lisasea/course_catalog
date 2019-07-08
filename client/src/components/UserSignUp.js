@@ -28,6 +28,7 @@ class UserSignUp extends Component {
 
     createUser = e => {
       e.preventDefault();
+      if (this.firstName.value !== "" && this.lastName.value !== "" && this.emailAddress.value !== "" && this.password.value !== "" && this.confirmPassword.value !== "") 
       if(this.state.password === "") { // check for valid password then make http request
         this.setState({validationErrors: "Password required"})
       } else if (this.state.password !== this.state.confirmPassword) {

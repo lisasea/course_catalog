@@ -14,15 +14,20 @@
 This app uses React to create a client for an existing school database REST API (that I created in the previous FSJS Techdegree project #9). This is a full stack application that provides a way for users to administer a school database containing information about courses: users can interact with the database by retrieving a list of courses, viewing detail for a specific course, as well as creating, updating and deleting courses in the database. In addition, users are required to create an account and sign in to make changes to the database. 
 
 ## Setup:
-1. Download this repo 
-2. In the `/api` folder run: npm install - in the terminal command line to start the server on port 5000
-3. In the `/client` folder run: npm install - in the terminal command line to install server side dependencies
-4. Open a console, inside the folder `/api` run:
-```
-npm start - in the terminal command line
-```
-
-## view in your browser at http://localhost:3000 
+1. Clone this repo 
+2. In the `/api` folder run: 
+     ```
+     cd api
+     npm install
+     npm start #start the api server on port 5000
+     ```
+3. In a new terminal, set up the `/client` server: 
+     ```
+     cd client
+     npm install
+     npm start #start the front-end server on port 3000
+     ```
+4. View in your browser at http://localhost:3000 
 
 
 

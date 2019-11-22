@@ -19,7 +19,7 @@ class CourseDetail extends Component { // setup empty courses array and empty us
             match: { params }
         } = this.props;
          
-        axios.get(`http://localhost:5000/api/courses/${params.id}`)
+        axios.get(`/api/courses/${params.id}`)
         .then (res => {
 
           const courseData = res.data.coursesById;
@@ -50,7 +50,7 @@ class CourseDetail extends Component { // setup empty courses array and empty us
           } = this.props;
 
         e.preventDefault();
-        axios.delete(`http://localhost:5000/api/courses/${params.id}`, {
+        axios.delete(`/api/courses/${params.id}`, {
             auth: {
                 username: localStorage.getItem("Email"), 
                 password: localStorage.getItem("Password")

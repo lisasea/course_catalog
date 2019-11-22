@@ -24,7 +24,7 @@ class App extends Component { //set global state includes user log in
   }
 
   signIn(userInfo) { //gets authenticated user + data & handles sign-in
-    axios.get("http://localhost:5000/api/users", {
+    axios.get("/api/users", {
       auth: {
         username: userInfo.emailAddress,
         password: userInfo.password

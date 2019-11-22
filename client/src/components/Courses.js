@@ -12,7 +12,7 @@ class Courses extends Component { // setup empty courses array
   }
 
 componentDidMount() { // get list of courses from REST API /api/courses route
-  axios.get("http://localhost:5000/api/courses")
+  axios.get("/api/courses")
   .then (res => {
     this.setState({
       courses: res.data,

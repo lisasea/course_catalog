@@ -1,6 +1,16 @@
 # Full Stack JavaScript Techdegree
 # Full Stack App with React and a REST API
 
+
+## To run on Heroku
+
+```
+heroku create
+heroku addons:create heroku-postgresql:hobby-dev
+git push heroku master
+heroku run npm run seed
+```
+
 ## Technologies used:
      React
      JSX

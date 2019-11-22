@@ -13,6 +13,7 @@ const sequelize = new Sequelize({ //builds data base
   storage: './fsjstd-restapi.db'
 });
 
+
 sequelize //tests data base connection
   .authenticate()
   .then(() => {

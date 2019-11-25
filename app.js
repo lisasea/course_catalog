@@ -65,4 +65,5 @@ app.use((err, req, res, next) => { // setup a global error handler
   });
 });
 
-app.listen(5000, () => console.log('REST API listening on port 5000!')); // set our port
+const port = process.env.PORT || 5000;
+app.listen(port, () => console.log('REST API listening on port ' + port + '!')); // set our port

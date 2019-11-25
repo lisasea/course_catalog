@@ -30,13 +30,13 @@ To clone and run this application, you will probably want [Git](https://git-scm.
 
 ```bash
 # Clone this repository
-  git clone https://github.com/lisasea/course_catalog
+     git clone https://github.com/lisasea/course_catalog
 
 # Open in Visual Studio Code
-  vsc to open 
+     vsc to open 
 
 # Go to project directory root
-  cd course_catalog
+     cd course_catalog
 
 # Go to `/api` folder and run 
      cd api
@@ -50,7 +50,7 @@ To clone and run this application, you will probably want [Git](https://git-scm.
 ```
 
 # View in your browser
-$ http://localhost:3000 
+     http://localhost:3000 
 
 
 Now you can begin making API calls! 

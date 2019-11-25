@@ -39,14 +39,11 @@ To clone and run this application, you will probably want [Git](https://git-scm.
   cd course_catalog
 
 # Go to `/api` folder and run 
-```
      cd api
      npm install
      npm start #start the api server on port 5000
-```
 
 # In a new terminal, set up the `/client` server 
-```
      cd client
      npm install
      npm start #start the front-end server on port 3000

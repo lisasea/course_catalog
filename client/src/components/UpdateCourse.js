@@ -35,7 +35,7 @@ class UpdateCourse extends Component {
           })
         } else {
         const {match: {params}} = this.props;
-        axios.put(`http://localhost:5000/api/courses/${params.id}`, 
+        axios.put(`/api/courses/${params.id}`, 
         {
           title: this.state.title,
           description: this.state.description,

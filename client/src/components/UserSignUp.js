@@ -50,8 +50,8 @@ class UserSignUp extends Component {
       } else if (password !== confirmPassword) {
         this.setState({validationErrors: "Confirm Password field does not match password value, please re-enter"})
       } else {
-        axios.post("http://localhost:5000/api/users", { 
-          firstName, 
+        axios.post("/api/users", {
+          firstName,
           lastName,
           emailAddress, 
           password,
@@ -95,7 +95,7 @@ class UserSignUp extends Component {
                   </form>
                 </div>
                 <p>&nbsp;</p>
-                <p>Already have a user account? <Link to="sign-in.html">Click here</Link> to sign in!</p>
+                <p>Already have a user account? <Link to="/signin">Click here</Link> to sign in!</p>
               </div>
             </div>
           </div>

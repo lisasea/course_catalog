@@ -33,13 +33,13 @@ class CreateCourse extends Component {
         })
       } else {
       console.log(this.state, localStorage.getItem("Email"), localStorage.getItem("Password"));
-      axios.post("http://localhost:5000/api/courses/", {
+      axios.post("/api/courses/", {
           title: this.state.title,
           description: this.state.description,
           estimatedTime: this.state.estimatedTime,
           materialsNeeded: this.state.materialsNeeded
         },
-        { // `http://localhost:5000/api/courses/`${params.id} ??
+        { // `/api/courses/`${params.id} ??
         auth: {
             username: localStorage.getItem("Email"),
             password: localStorage.getItem("Password")

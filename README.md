@@ -30,27 +30,27 @@ To clone and run this application, you will probably want [Git](https://git-scm.
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/lisasea/course_catalog
+  git clone https://github.com/lisasea/course_catalog
 
 # Open in Visual Studio Code
-$ vsc to open 
+  vsc to open 
 
 # Go to project directory root
-$ cd course_catalog
+  cd course_catalog
 
 # Go to `/api` folder and run 
-     ```
+```
      cd api
      npm install
      npm start #start the api server on port 5000
-     ```
+```
 
 # In a new terminal, set up the `/client` server 
-     ```
+```
      cd client
      npm install
      npm start #start the front-end server on port 3000
-     ```
+```
 
 # View in your browser
 $ http://localhost:3000 

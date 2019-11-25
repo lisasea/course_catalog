@@ -10,11 +10,21 @@ const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === "tr
 const path = require('path');
 
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize({ //builds data base
-  dialect: 'sqlite',
-  storage: './fsjstd-restapi.db'
-});
-
+let sequelize;
+if (process.env.DATABASE_URL) {
+  sequelize = new Sequelize(process.env.DATABASE_URL, {
+    dialect: 'postgres',
+    protocol: 'postgres',
+    dialectOptions: {
+      ssl: true
+    }
+  });
+} else {
+  sequelize = new Sequelize({ //builds data base
+    dialect: 'sqlite',
+    storage: './fsjstd-restapi.db'
+  });
+}
 
 sequelize //tests data base connection
   .authenticate()

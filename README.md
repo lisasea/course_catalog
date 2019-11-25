@@ -1,3 +1,93 @@
+<h1 align="center" style="font-size:86px;">
+  Course Catalog
+</h1>
+
+<h4 align="center">
+  A Full Stack JavaScript app | React and a REST API
+</h4>
+
+## Description     
+This app uses React to create a client for an existing school database REST API (that I created in the previous FSJS Techdegree project #9). This is a full stack application that provides a way for users to interact with a school database containing information about courses. Users can create an account and sign in to make changes to the database.  They can interact with the database by retrieving a list of courses, viewing detail for a specific course, as well as creating, updating and deleting courses in the database. 
+
+## Required Technologies
+
+* [React](https://www.reactjs.org)
+* [JSX](https://jsx.github.io/)
+* [React Router](https://www.npmjs.com/package/react-router)
+* [React Context API](https://www.npmjs.com/package/react-router)
+* [Create React App](https://github.com/facebook/create-react-app/blob/master/LICENSE)
+
+## Suggested Technologies
+
+* [Git](https://git-scm.com)
+* [Axios](https://github.com/axios/axios)
+* [Visual Studio Code](https://code.visualstudio.com/)
+
+
+## How To Use
+
+To clone and run this application, you will probably want [Git](https://git-scm.com) installed on your computer. To edit this project you may want a text-editor like [Visual Studio Code](https://code.visualstudio.com/). 
+
+```bash
+# Clone this repository
+$ git clone https://github.com/lisasea/course_catalog
+
+# Open in Visual Studio Code
+$ vsc to open 
+
+# Go to project directory root
+$ cd course_catalog
+
+# Go to `/api` folder and run 
+     ```
+     cd api
+     npm install
+     npm start #start the api server on port 5000
+     ```
+
+# In a new terminal, set up the `/client` server 
+     ```
+     cd client
+     npm install
+     npm start #start the front-end server on port 3000
+     ```
+
+# View in your browser
+$ http://localhost:3000 
+
+
+Now you can begin making API calls! 
+```
+## Contact
+
+_Contact: lisacarbonell@gmail.com_
+
+## Contributors
+
+<!-- prettier-ignore -->
+| [<img src="https://avatars2.githubusercontent.com/u/" width="100px;"/><br /><sub><b>Lisa Carbonell</b></sub>](https://github.com/lisasea)<br /> |
+| :---: |
+
+## License
+
+MIT License
+
+Copyright (c) 2019 Lisa Carbonell
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Full Stack JavaScript Techdegree
 # Full Stack App with React and a REST API
 
